@@ -1,0 +1,37 @@
+#define PIR_Sensor 4
+#define String_light 5
+
+void setup() {
+  // put your setup code here, to run once:
+Serial.begin(9600);
+
+pinMode(PIR_Sensor, INPUT);
+pinMode(String_light, OUTPUT);
+
+}
+
+void loop() {
+analogWrite(String_light,0); 
+bool status = digitalRead(PIR_Sensor);
+    if(status == true)
+      {
+        while(digitalRead(PIR_Sensor))
+        {       
+          
+          for(int i = 0; i<255; i++)
+          {
+            analogWrite(String_light, i);
+            delay(5);
+            Serial.println(i);
+          }
+          Serial.println("SWITCH");
+          for(int i = 255; i>0; i--)
+          {
+            Serial.println(i);
+            analogWrite(String_light, i);
+            delay(5);
+            }
+          }
+          
+        }
+      }
